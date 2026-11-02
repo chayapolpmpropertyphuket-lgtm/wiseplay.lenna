@@ -87,8 +87,7 @@ fun HomeScreen() {
                     modifier = Modifier
                         .width(380.dp)
                         .fillMaxHeight(),
-                    shape = CardDefaults.shape(shape = MaterialTheme.shapes.none),
-                    colors = CardDefaults.colors(
+                    colors = SurfaceDefaults.colors(
                         containerColor = Color(0xFF12151D)
                     )
                 ) {
@@ -136,7 +135,7 @@ fun HomeScreen() {
                                 focusedContainerColor = Color(0xFF00F2FE)
                             )
                         ) {
-                            Text(text = "ปิดเมนู (Close)")
+                            Text(text = "ปิดหน้าต่าง (Close)")
                         }
                     }
                 }
@@ -179,8 +178,7 @@ fun PopupMenuItem(text: String, isSelected: Boolean = false, onClick: () -> Unit
     Surface(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
-        shape = ClickableSurfaceDefaults.shape(shape = MaterialTheme.shapes.medium),
-        colors = ClickableSurfaceDefaults.colors(
+        colors = SurfaceDefaults.colors(
             containerColor = if (isSelected) Color(0xFF00F2FE) else Color(0xFF161923),
             focusedContainerColor = Color(0xFF00F2FE)
         )
