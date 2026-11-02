@@ -87,8 +87,7 @@ fun HomeScreen() {
                     modifier = Modifier
                         .width(380.dp)
                         .fillMaxHeight(),
-                    shape = ClickableSurfaceDefaults.shape(shape = MaterialTheme.shapes.none),
-                    colors = ClickableSurfaceDefaults.colors(
+                    colors = SurfaceDefaults.colors(
                         containerColor = Color(0xFF12151D)
                     )
                 ) {
@@ -176,10 +175,10 @@ fun StreamCard(title: String, category: String) {
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun PopupMenuItem(text: String, isSelected: Boolean = false, onClick: () -> Unit) {
-    Surface(
+    // ใช้ ClickableSurface สำหรับรายการเมนูที่กดเลือกได้
+    ClickableSurface(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
-        shape = ClickableSurfaceDefaults.shape(shape = MaterialTheme.shapes.medium),
         colors = ClickableSurfaceDefaults.colors(
             containerColor = if (isSelected) Color(0xFF00F2FE) else Color(0xFF161923),
             focusedContainerColor = Color(0xFF00F2FE)
