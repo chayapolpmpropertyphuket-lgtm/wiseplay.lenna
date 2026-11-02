@@ -23,13 +23,11 @@ fun HomeScreen() {
             .fillMaxSize()
             .background(Color(0xFF0B0D14))
     ) {
-        // Main Content Area
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(40.dp)
         ) {
-            // Top Bar: โลโก้ และปุ่มเมนูอยู่ใต้โลโก้
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -71,7 +69,6 @@ fun HomeScreen() {
             }
         }
 
-        // Left-Side Popup Menu Drawer (มีโลโก้แอปอยู่ด้านบนสุดของป๊อปอัพ)
         AnimatedVisibility(
             visible = isMenuOpen,
             enter = slideInHorizontally(initialOffsetX = { -it }),
