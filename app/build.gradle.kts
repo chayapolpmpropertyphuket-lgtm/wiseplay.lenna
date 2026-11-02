@@ -38,9 +38,6 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
-        freeCompilerArgs += listOf(
-            "-opt-in=androidx.tv.material3.ExperimentalTvMaterial3Api"
-        )
     }
 
     buildFeatures {
@@ -62,8 +59,7 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.tv:tv-foundation:1.0.0-alpha10")
-    implementation("androidx.tv:tv-material:1.0.0-alpha10")
+    implementation("androidx.compose.material3:material3") // <--- บรรทัดนี้สำคัญมากต้องมี
     implementation("androidx.media3:media3-exoplayer:1.3.0")
     implementation("androidx.media3:media3-ui:1.3.0")
     implementation("androidx.media3:media3-datasource-okhttp:1.3.0")
