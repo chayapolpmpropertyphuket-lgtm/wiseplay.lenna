@@ -18,10 +18,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
 
         ndk {
             abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
-            }
+        }
     }
 
     buildTypes {
@@ -75,5 +76,4 @@ dependencies {
     implementation("androidx.media3:media3-datasource-okhttp:1.3.0")
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    // ตัด org.json ออกเรียบร้อย ใช้ JSON ของ Android SDK ดั้งเดิมได้ทันที
 }
