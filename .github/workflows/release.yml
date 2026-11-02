@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build:
-    name: Build Release APK
+    name: Build and Sign Release APK
     runs-on: ubuntu-latest
 
     steps:
@@ -39,11 +39,26 @@ jobs:
     - name: Build Release APK
       run: ./gradlew assembleRelease --no-daemon
 
+    - name: Generate Debug Keystore for Signing
+      run: |
+        keytool -genkey -v -keystore debug.keystore -alias androiddebugkey -keypass android -storepass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+
+    - name: Sign APK with Debug Keystore
+      run: |
+        # ค้นหาไฟล์ apksigner อัตโนมัติจาก SDK
+        APKSIGNER=$(find $ANDROID_HOME/build-tools -name apksigner | head -n 1)
+        
+        # จัดการเซ็นชื่อลงบนไฟล์ APK
+        $APKSIGNER sign --ks debug.keystore --ks-pass pass:android --key-pass pass:android app/build/outputs/apk/release/app-release-unsigned.apk
+        
+        # เปลี่ยนชื่อไฟล์ให้อ่านง่ายและพร้อมติดตั้ง
+        mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/lenna-tv-release.apk
+
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: lenna-tv-release-apk
-        path: app/build/outputs/apk/release/*.apk
+        path: app/build/outputs/apk/release/lenna-tv-release.apk
 
   release:
     name: Create GitHub Release
@@ -69,7 +84,7 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.tag_name }}
         name: "Lenna TV Release ${{ steps.tag.outputs.tag_name }}"
-        files: app/build/outputs/apk/release/*.apk
+        files: app/build/outputs/apk/release/lenna-tv-release.apk
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
