@@ -2,6 +2,9 @@ name: Build and Release Android TV APK
 
 on:
   push:
+    branches:
+      - main
+      - master
     tags:
       - 'v*'
   workflow_dispatch:
