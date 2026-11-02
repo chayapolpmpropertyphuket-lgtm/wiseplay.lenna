@@ -5,7 +5,6 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RectangleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -14,9 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.tv.material3.ExperimentalTvMaterial3Api
 
-@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun HomeScreen() {
     var isMenuOpen by remember { mutableStateOf(false) }
@@ -48,7 +45,8 @@ fun HomeScreen() {
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFF161923),
                         contentColor = Color.White
-                    )
+                    ),
+                    shape = RoundedCornerShape(24.dp)
                 ) {
                     Text(text = "⚡ เมนูหลัก (Menu)")
                 }
@@ -90,7 +88,7 @@ fun HomeScreen() {
                     modifier = Modifier
                         .width(380.dp)
                         .fillMaxHeight(),
-                    shape = RectangleShape,
+                    shape = RoundedCornerShape(0.dp),
                     color = Color(0xFF12151D),
                     contentColor = Color.White
                 ) {
@@ -136,7 +134,8 @@ fun HomeScreen() {
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF161923),
                                 contentColor = Color.White
-                            )
+                            ),
+                            shape = RoundedCornerShape(12.dp)
                         ) {
                             Text(text = "ปิดหน้าต่าง (Close)")
                         }
