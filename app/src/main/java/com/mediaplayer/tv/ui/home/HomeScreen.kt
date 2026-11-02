@@ -87,7 +87,8 @@ fun HomeScreen() {
                     modifier = Modifier
                         .width(380.dp)
                         .fillMaxHeight(),
-                    colors = SurfaceDefaults.colors(
+                    shape = ClickableSurfaceDefaults.shape(shape = MaterialTheme.shapes.none),
+                    colors = ClickableSurfaceDefaults.colors(
                         containerColor = Color(0xFF12151D)
                     )
                 ) {
@@ -178,7 +179,8 @@ fun PopupMenuItem(text: String, isSelected: Boolean = false, onClick: () -> Unit
     Surface(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
-        colors = SurfaceDefaults.colors(
+        shape = ClickableSurfaceDefaults.shape(shape = MaterialTheme.shapes.medium),
+        colors = ClickableSurfaceDefaults.colors(
             containerColor = if (isSelected) Color(0xFF00F2FE) else Color(0xFF161923),
             focusedContainerColor = Color(0xFF00F2FE)
         )
