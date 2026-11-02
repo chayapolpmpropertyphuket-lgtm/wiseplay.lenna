@@ -5,13 +5,16 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RectangleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.tv.material3.*
+import androidx.tv.material3.ExperimentalTvMaterial3Api
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
@@ -42,12 +45,12 @@ fun HomeScreen() {
                 )
                 Button(
                     onClick = { isMenuOpen = true },
-                    colors = ButtonDefaults.colors(
+                    colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFF161923),
-                        focusedContainerColor = Color(0xFF00F2FE)
+                        contentColor = Color.White
                     )
                 ) {
-                    Text(text = "⚡ เมนูหลัก (Menu)", color = Color.White)
+                    Text(text = "⚡ เมนูหลัก (Menu)")
                 }
             }
 
@@ -87,12 +90,9 @@ fun HomeScreen() {
                     modifier = Modifier
                         .width(380.dp)
                         .fillMaxHeight(),
-                    tonalElevation = 0.dp,
-                    shape = MaterialTheme.shapes.none,
-                    colors = SurfaceDefaults.colors(
-                        containerColor = Color(0xFF12151D),
-                        contentColor = Color.White
-                    )
+                    shape = RectangleShape,
+                    color = Color(0xFF12151D),
+                    contentColor = Color.White
                 ) {
                     Column(
                         modifier = Modifier
@@ -133,9 +133,9 @@ fun HomeScreen() {
                         Button(
                             onClick = { isMenuOpen = false },
                             modifier = Modifier.fillMaxWidth(),
-                            colors = ButtonDefaults.colors(
+                            colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF161923),
-                                focusedContainerColor = Color(0xFF00F2FE)
+                                contentColor = Color.White
                             )
                         ) {
                             Text(text = "ปิดหน้าต่าง (Close)")
@@ -147,18 +147,15 @@ fun HomeScreen() {
     }
 }
 
-@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun StreamCard(title: String, category: String) {
-    Card(
+    Surface(
         onClick = { /* Handle stream click */ },
         modifier = Modifier
             .width(220.dp)
             .height(140.dp),
-        colors = CardDefaults.colors(
-            containerColor = Color(0xFF161923),
-            focusedContainerColor = Color(0xFF161923)
-        )
+        shape = RoundedCornerShape(12.dp),
+        color = Color(0xFF161923)
     ) {
         Box(
             modifier = Modifier
@@ -175,20 +172,14 @@ fun StreamCard(title: String, category: String) {
     }
 }
 
-@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun PopupMenuItem(text: String, isSelected: Boolean = false, onClick: () -> Unit) {
-    // ใช้ Surface พร้อมกำหนดเงื่อนไขการคลิกเพื่อให้รองรับรีโมททีวีอย่างสมบูรณ์
     Surface(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
-        shape = ClickableSurfaceDefaults.shape(shape = MaterialTheme.shapes.medium),
-        colors = SurfaceDefaults.colors(
-            containerColor = if (isSelected) Color(0xFF00F2FE) else Color(0xFF161923),
-            focusedContainerColor = Color(0xFF00F2FE),
-            contentColor = if (isSelected) Color(0xFF050608) else Color.White,
-            focusedContentColor = Color(0xFF050608)
-        )
+        shape = RoundedCornerShape(8.dp),
+        color = if (isSelected) Color(0xFF00F2FE) else Color(0xFF161923),
+        contentColor = if (isSelected) Color(0xFF050608) else Color.White
     ) {
         Box(modifier = Modifier.padding(16.dp)) {
             Text(
